@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import  service.LoginService;
 
 @WebServlet("login")
 public class LoginController extends HttpServlet {
@@ -20,7 +21,7 @@ public class LoginController extends HttpServlet {
         String password = req.getParameter("password");
 
         RequestDispatcher dispatcher;
-        if(login.equals("conte") && password.equals("qwe")){
+        if(new LoginService().autenticar(login, password)){
             System.out.println("Logado");
             dispatcher = req.getRequestDispatcher("/WEB-INF/principal.jsp");
         }else{
