@@ -1,11 +1,13 @@
 package model;
 
-public class Cliente {
+public class Entidade {
     private int id;
     private String nome;
     private String cpf;
+    private String telefone;
+    private Endereco endereco;
 
-    public Cliente(String nome, String cpf) {
+    public Entidade(String nome, String cpf) {
         this.nome = nome;
         this.cpf = cpf;
     }
@@ -32,5 +34,21 @@ public class Cliente {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 }

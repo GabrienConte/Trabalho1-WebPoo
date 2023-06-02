@@ -3,17 +3,17 @@ package model;
 public class Usuario {
 
     private  int id;
-    private String name;
-    private String cpf;
+    private String nome;
     private String login;
-    private  String password;
+    private  String email;
+    private  String senha;
+    private TipoUsuario tipoUsuario;
 
-    public Usuario(int id, String name, String cpf, String login, String password) {
+    public Usuario(int id, String nome, String login, String senha) {
         this.id = id;
-        this.name = name;
-        this.cpf = cpf;
+        this.nome = nome;
         this.login = login;
-        this.password = password;
+        this.senha = senha;
     }
 
     public int getId() {
@@ -24,20 +24,12 @@ public class Usuario {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNome() {
+        return nome;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getLogin() {
@@ -48,11 +40,27 @@ public class Usuario {
         this.login = login;
     }
 
-    public String getPassword() {
-        return password;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public TipoUsuario getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(TipoUsuario tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
     }
 }

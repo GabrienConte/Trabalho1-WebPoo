@@ -1,13 +1,13 @@
 package dao;
 
-import model.Cliente;
+import model.Entidade;
 import java.sql.SQLException;//importa a classe SQLException para tratar os erros de conexão com o banco de dados
 import java.sql.Statement;//importa a classe Statement para executar os comandos sql no banco de dados
 import java.util.ArrayList;//importa a classe ArrayList para armazenar os objetos do tipo Cliente
 import java.util.Scanner;
 
 public class ClienteDAO {
-    public boolean salvar(Cliente c){//método para salvar um objeto do tipo Cliente no banco de dados
+    public boolean salvar(Entidade c){//método para salvar um objeto do tipo Cliente no banco de dados
 
         boolean salvou  = false;//variável para verificar se o objeto foi salvo no banco de dados
         String sql = "INSERT INTO cliente(nomecliente, cpf) VALUES ('"+c.getNome() +"', '"+ c.getCpf()+"')";
@@ -40,7 +40,7 @@ public class ClienteDAO {
         return deletado;
     }
 
-    public boolean atualizar(Cliente c, int id){//atualizar cliente
+    public boolean atualizar(Entidade c, int id){//atualizar cliente
         boolean atualizado = false;//variável para verificar se o objeto foi atualizado no banco de dados
         System.out.println("deseja atualizar o nome, cpf ou ambos?");
         Scanner scan = new Scanner(System.in);
@@ -80,7 +80,7 @@ public class ClienteDAO {
         return atualizado;
     }
 
-    public ArrayList<Cliente> getClientes(){
+    public ArrayList<Entidade> getClientes(){
         return null;
     }
 }
