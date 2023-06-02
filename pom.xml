@@ -4,10 +4,26 @@
   <groupId>br.ufsm.csi</groupId>
   <artifactId>trabalho1_webpoo</artifactId>
   <packaging>war</packaging>
-  <version>1.0</version>
+  <properties>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+  </properties>
+    <version>1.0</version>
   <name>trabalho1_webpoo Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
+    <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>42.6.0</version>
+    </dependency>
+    <dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>javax.servlet-api</artifactId>
+    <version>3.0.1</version>
+    <scope>provided</scope>
+  </dependency>
     <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
     <dependency>
       <groupId>org.postgresql</groupId>

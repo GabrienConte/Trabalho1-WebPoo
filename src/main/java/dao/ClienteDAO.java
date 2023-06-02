@@ -6,7 +6,7 @@ import java.sql.Statement;//importa a classe Statement para executar os comandos
 import java.util.ArrayList;//importa a classe ArrayList para armazenar os objetos do tipo Cliente
 import java.util.Scanner;
 
-public class ClienteDao {
+public class ClienteDAO {
     public boolean salvar(Cliente c){//método para salvar um objeto do tipo Cliente no banco de dados
 
         boolean salvou  = false;//variável para verificar se o objeto foi salvo no banco de dados
