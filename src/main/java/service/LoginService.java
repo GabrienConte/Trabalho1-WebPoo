@@ -7,8 +7,8 @@ public class LoginService {
 
     public boolean autenticar(String login, String password){
 
-        Usuario teste = new UsuarioDAO().getUsuario("teste");
-        if(teste.getLogin().equals(login) && teste.getPassword().equals(password))
+        Usuario teste = new UsuarioDAO().getUsuario();
+        if(teste.getLogin().equals(login) && teste.getSenha().equals(password))
         {
             return true;
         }else {

@@ -1,11 +1,11 @@
-package dao;
+package dao.conexao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConectaDB {
-    private static final String URL = "jdbc:postgresql://localhost/webpoo";
+    private static final String URL = "jdbc:postgresql://localhost/CavalheiroLocacoes";
     private static final String LOGIN = "postgres";
     private static final String SENHA = "1234";
 
