@@ -2,10 +2,16 @@ package dao;
 
 import dao.conexao.ConectaDB;
 import model.Produto;
+import model.TipoUsuario;
+import model.Produto;
+import model.Usuario;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ProdutoDAO {
     public boolean inserir(Produto produto) {
@@ -78,11 +84,62 @@ public class ProdutoDAO {
         }
     }
 
-    public Produto getProduto(){
-        return null;
+    public Produto getProdutoById(int id) {
+        StringBuilder sql = new StringBuilder();
+        Produto produto = new Produto();
+
+        sql.append("SELECT * FROM produto prod  ");
+        sql.append("WHERE prod.id = " + id  + ";");
+
+        try (Connection conn = new ConectaDB().getConexao()) {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql.toString());
+
+            if(rs.next()) {
+                produto = ResultSetToObject(rs);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return produto;
     }
 
-    public ArrayList<Produto> ListaProduto(){
-        return null;
+    public List<Produto> ListaProduto() {
+        List<Produto> produtos = new ArrayList<>();
+        StringBuilder sql = new StringBuilder();
+
+        sql.append("SELECT * FROM produto prod  ");
+
+        try (Connection conn = new ConectaDB().getConexao()) {
+
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql.toString());
+
+            while(rs.next()) {
+                produtos.add(ResultSetToObject(rs));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return produtos;
+    }
+
+    private Produto ResultSetToObject(ResultSet rs) throws Exception {
+        Produto produto = new Produto();
+
+        try {
+            produto.setId(rs.getInt("id"));
+            produto.setDescricao(rs.getString("descricao"));
+            produto.setMarca(rs.getString("login"));
+            produto.setQuantidade(rs.getFloat("quantidade"));
+            produto.setValor(rs.getFloat("valor"));
+
+        } catch (Exception e) {
+            throw e;
+        }
+
+        return produto;
     }
 }

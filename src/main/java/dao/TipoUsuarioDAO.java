@@ -2,10 +2,15 @@ package dao;
 
 import dao.conexao.ConectaDB;
 import model.TipoUsuario;
+import model.TipoUsuario;
+import model.Usuario;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 public class TipoUsuarioDAO {
     public boolean inserir(TipoUsuario tipoUsuario) {
@@ -70,11 +75,59 @@ public class TipoUsuarioDAO {
         }
     }
 
-    public TipoUsuario getTipoUsuario(){
-        return null;
+    public TipoUsuario getTipoUsuarioById(int id) {
+        StringBuilder sql = new StringBuilder();
+        TipoUsuario tipoUsuario = new TipoUsuario();
+
+        sql.append("SELECT * FROM tipoUsuario tu  ");
+        sql.append("WHERE tu.id = " + id  + ";");
+
+        try (Connection conn = new ConectaDB().getConexao()) {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql.toString());
+
+            if(rs.next()) {
+                tipoUsuario = ResultSetToObject(rs);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return tipoUsuario;
     }
 
-    public ArrayList<TipoUsuario> ListaTipoUsuario(){
-        return null;
+    public List<TipoUsuario> ListaTipoUsuario() {
+        List<TipoUsuario> usuarios = new ArrayList<>();
+        StringBuilder sql = new StringBuilder();
+
+        sql.append("SELECT * FROM tipoUsuario tu  ");
+
+        try (Connection conn = new ConectaDB().getConexao()) {
+
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql.toString());
+
+            while(rs.next()) {
+                usuarios.add(ResultSetToObject(rs));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return usuarios;
+    }
+
+    private TipoUsuario ResultSetToObject(ResultSet rs) throws Exception {
+        TipoUsuario tipoUsuario = new TipoUsuario();
+
+        try {
+            tipoUsuario.setId(rs.getInt("id"));
+            tipoUsuario.setTipo(rs.getString("tipo"));
+
+        } catch (Exception e) {
+            throw e;
+        }
+
+        return tipoUsuario;
     }
 }

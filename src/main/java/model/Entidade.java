@@ -1,7 +1,7 @@
 package model;
 
 public class Entidade {
-    private int id;
+    private int id = 0;
     private String nome;
     private String cpf;
     private String telefone;
@@ -10,6 +10,9 @@ public class Entidade {
     public Entidade(String nome, String cpf) {
         this.nome = nome;
         this.cpf = cpf;
+    }
+
+    public Entidade() {
     }
 
     public int getId() {

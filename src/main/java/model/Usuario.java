@@ -2,7 +2,7 @@ package model;
 
 public class Usuario {
 
-    private  int id;
+    private  int id = 0;
     private String nome;
     private String login;
     private  String email;
@@ -14,6 +14,10 @@ public class Usuario {
         this.nome = nome;
         this.login = login;
         this.senha = senha;
+    }
+
+    public Usuario() {
+
     }
 
     public int getId() {

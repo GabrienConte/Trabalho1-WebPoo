@@ -2,10 +2,13 @@ package model;
 
 public class Endereco {
 
-    private int id;
+    private int id = 0;
     private String cep;
     private String logradouro;
     private String observacao;
+
+    public Endereco() {
+    }
 
     public int getId() {
         return id;

@@ -3,11 +3,14 @@ package model;
 import java.util.Date;
 
 public class ItemPedido {
-    private int  id;
+    private int  id = 0;
     private float quantidade;
     private float total;
     private Produto produto;
     private Pedido pedido;
+
+    public ItemPedido() {
+    }
 
     public int getId() {
         return id;

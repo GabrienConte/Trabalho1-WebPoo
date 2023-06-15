@@ -3,9 +3,12 @@ package dao;
 import dao.conexao.ConectaDB;
 import model.Endereco;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 public class EnderecoDAO {
     public boolean inserir(Endereco endereco) {
@@ -76,11 +79,61 @@ public class EnderecoDAO {
         }
     }
 
-    public Endereco getEndereco(){
-        return null;
+    public Endereco getEnderecoById(int id) {
+        StringBuilder sql = new StringBuilder();
+        Endereco endereco = new Endereco();
+
+        sql.append("SELECT * FROM endereco end  ");
+        sql.append("WHERE end.id = " + id  + ";");
+
+        try (Connection conn = new ConectaDB().getConexao()) {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql.toString());
+
+            if(rs.next()) {
+                endereco = ResultSetToObject(rs);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return endereco;
     }
 
-    public ArrayList<Endereco> ListaEndereco(){
-        return null;
+    public List<Endereco> ListaEndereco() {
+        List<Endereco> enderecos = new ArrayList<>();
+        StringBuilder sql = new StringBuilder();
+
+        sql.append("SELECT * FROM endereco end  ");
+
+        try (Connection conn = new ConectaDB().getConexao()) {
+
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql.toString());
+
+            while(rs.next()) {
+                enderecos.add(ResultSetToObject(rs));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return enderecos;
+    }
+
+    private Endereco ResultSetToObject(ResultSet rs) throws Exception {
+        Endereco endereco = new Endereco();
+
+        try {
+            endereco.setId(rs.getInt("id"));
+            endereco.setCep(rs.getString("cep"));
+            endereco.setLogradouro(rs.getString("logradouro"));
+            endereco.setObservacao(rs.getString("observacao"));
+
+        } catch (Exception e) {
+            throw e;
+        }
+
+        return endereco;
     }
 }

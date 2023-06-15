@@ -1,11 +1,14 @@
 package model;
 
 public class Produto {
-    private int id;
+    private int id = 0;
     private String descricao;
     private String marca;
     private float quantidade;
     private float valor;
+
+    public Produto() {
+    }
 
     public int getId() {
         return id;

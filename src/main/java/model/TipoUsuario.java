@@ -9,6 +9,10 @@ public class TipoUsuario {
         this.tipo = tipo;
     }
 
+    public TipoUsuario() {
+
+    }
+
     public int getId() {
         return id;
     }
