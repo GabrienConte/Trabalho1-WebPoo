@@ -5,10 +5,10 @@ import model.Usuario;
 
 public class LoginService {
 
-    public boolean autenticar(String login, String password){
-
+    public boolean autenticar(String login, String senha){
         Usuario teste = new UsuarioDAO().getUsuarioByLogin(login);
-        if(teste != null && teste.getSenha() == password)
+
+        if(teste.getLogin() != null && senha.equals(teste.getSenha()))
         {
             return true;
         }else {

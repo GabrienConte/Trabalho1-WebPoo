@@ -14,15 +14,11 @@ public class LoginController extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        /* super.service(req, resp); */
-        System.out.println("bateu no login");
-
-        String login = req.getParameter("name");
-        String password = req.getParameter("password");
+        String login = req.getParameter("login");
+        String senha = req.getParameter("senha");
 
         RequestDispatcher dispatcher;
-        if(new LoginService().autenticar(login, password)){
-            System.out.println("Logado");
+        if(new LoginService().autenticar(login, senha)){
             dispatcher = req.getRequestDispatcher("/WEB-INF/principal.jsp");
         }else{
             System.out.println("deu ruim");

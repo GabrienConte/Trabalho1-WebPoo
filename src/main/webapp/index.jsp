@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,10 +9,35 @@
 </head>
 <body>
 <section class="section">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item">
+                <img src="C:\Users\Gabriel Conte\Desktop\UFSM\WebPoo\trabalho1_webpoo\images\cav-removebg-preview.png">
+            </a>
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+
+            </div>
+
+            <div class="navbar-end">
+                <div class="navbar-item">
+
+                </div>
+            </div>
+        </div>
+    </nav>
     <div class="container">
         <h1 class="title is-1">Entrar</h1>
         <div class="container box">
-            <form method="get" action="login">
+            <form method="post" action="login">
                 <div class="field">
                     <label class="label" for="login">Login</label>
                     <p class="control">

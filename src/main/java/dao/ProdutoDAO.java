@@ -76,11 +76,11 @@ public class ProdutoDAO {
         return atualizado;
     }
 
-    public void salvar(Produto produto) {
+    public boolean salvar(Produto produto) {
         if(produto.getId() == 0) {
-            this.inserir(produto);
+            return this.inserir(produto);
         } else {
-            this.atualizar(produto);
+            return this.atualizar(produto);
         }
     }
 
@@ -132,7 +132,7 @@ public class ProdutoDAO {
         try {
             produto.setId(rs.getInt("id"));
             produto.setDescricao(rs.getString("descricao"));
-            produto.setMarca(rs.getString("login"));
+            produto.setMarca(rs.getString("marca"));
             produto.setQuantidade(rs.getFloat("quantidade"));
             produto.setValor(rs.getFloat("valor"));
 
