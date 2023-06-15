@@ -51,13 +51,13 @@ public class ProdutoController extends HttpServlet {
     private RequestDispatcher VisualizarProdutos(HttpServletRequest req) {
         req.setAttribute("produtos", new ProdutoDAO().ListaProduto());
         RequestDispatcher dispatcher;
-        dispatcher = req.getRequestDispatcher("/WEB-INF/produtos.jsp");
+        dispatcher = req.getRequestDispatcher("/WEB-INF/ProdutoView/produtos.jsp");
         return  dispatcher;
     }
 
     private RequestDispatcher CriarProduto(HttpServletRequest req) {
         RequestDispatcher dispatcher;
-        dispatcher = req.getRequestDispatcher("/WEB-INF/produtoCriarOuEditar.jsp");
+        dispatcher = req.getRequestDispatcher("/WEB-INF/ProdutoView/produtoCriarOuEditar.jsp");
         return  dispatcher;
     }
 
@@ -74,7 +74,7 @@ public class ProdutoController extends HttpServlet {
             req.setAttribute("opcao", "editar");
         }
         RequestDispatcher dispatcher;
-        dispatcher = req.getRequestDispatcher("/WEB-INF/produtoCriarOuEditar.jsp");
+        dispatcher = req.getRequestDispatcher("/WEB-INF/ProdutoView/produtoCriarOuEditar.jsp");
         return  dispatcher;
     }
 

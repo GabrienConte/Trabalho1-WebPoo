@@ -53,7 +53,7 @@ public class TipoUsuarioDAO {
         boolean atualizado = false;
         StringBuilder sql = new StringBuilder();
 
-        sql.append(" UPDATE usuarioTipo SET tipo = '" + tipoUsuario.getTipo() + "' ");
+        sql.append(" UPDATE tipoUsuario SET tipo = '" + tipoUsuario.getTipo() + "' ");
         sql.append(" WHERE id = " + tipoUsuario.getId() + ";");
 
         try{
@@ -67,11 +67,11 @@ public class TipoUsuarioDAO {
         return atualizado;
     }
 
-    public void salvar(TipoUsuario tipoUsuario) {
+    public boolean salvar(TipoUsuario tipoUsuario) {
         if(tipoUsuario.getId() == 0) {
-            this.inserir(tipoUsuario);
+            return this.inserir(tipoUsuario);
         } else {
-            this.atualizar(tipoUsuario);
+            return this.atualizar(tipoUsuario);
         }
     }
 
