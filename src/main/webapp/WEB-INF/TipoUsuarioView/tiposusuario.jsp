@@ -13,7 +13,7 @@
 <html lang="pt">
 <head>
     <%@ include file="../CommonView/header.jsp" %>
-    <title>Produtos</title>
+    <title>Tipos Usuário</title>
 </head>
 <body>
 <%@ include file="../CommonView/navbar.jsp" %>

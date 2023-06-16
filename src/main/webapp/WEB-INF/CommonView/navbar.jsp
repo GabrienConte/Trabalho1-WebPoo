@@ -39,7 +39,7 @@
                     Configuração do Sistema
                 </a>
                 <div class="navbar-dropdown">
-                    <a class="navbar-item" href="../inicio.jsp">
+                    <a class="navbar-item" href="usuarios?opcao=visualizar">
                         Usuário
                     </a>
                     <hr class="navbar-divider">

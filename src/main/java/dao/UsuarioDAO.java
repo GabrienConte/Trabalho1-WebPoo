@@ -72,11 +72,11 @@ public class UsuarioDAO {
         return atualizado;
     }
 
-    public void salvar(Usuario usuario) {
+    public boolean salvar(Usuario usuario) {
         if(usuario.getId() == 0) {
-            this.inserir(usuario);
+            return this.inserir(usuario);
         } else {
-            this.atualizar(usuario);
+            return this.atualizar(usuario);
         }
     }
 

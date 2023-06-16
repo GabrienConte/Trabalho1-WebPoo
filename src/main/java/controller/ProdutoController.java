@@ -38,7 +38,6 @@ public class ProdutoController extends HttpServlet {
                 break;
             case "excluir":
                 ExcluirProduto(req);
-                req.removeAttribute("id");
                 req.setAttribute("opcao", "visualizar");
                 dispatcher = VisualizarProdutos(req);
                 break;

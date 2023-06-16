@@ -9,6 +9,7 @@ public class ProdutoService {
         ProdutoDAO produtoDAO = new ProdutoDAO();
         return  produtoDAO.getProdutoById(id);
     }
+
     public static Boolean salvarProduto(Produto produto) {
         ProdutoDAO produtoDAO = new ProdutoDAO();
         return  produtoDAO.salvar(produto);
