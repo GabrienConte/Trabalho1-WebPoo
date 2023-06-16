@@ -12,6 +12,12 @@
         <a class="navbar-item">
             <img src="file:/images/cav-removebg-preview.png" width="112" height="28" alt="Bulma">
         </a>
+
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
     </div>
 
     <div id="navbarMenu" class="navbar-menu">

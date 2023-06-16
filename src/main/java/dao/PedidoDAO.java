@@ -87,10 +87,10 @@ public class PedidoDAO {
         StringBuilder sql = new StringBuilder();
         Pedido pedido = new Pedido();
 
-        sql.append("SELECT pedido.*, usu.id as idUsuario, usu.nome as nomeUsuario, usu.login, usu.email, usu.senha, usu.tiposuarioid ");
-        sql.append("ent.id as idEntidade, ent.nome as nomeEntidade, ent.cpf,ent.telefone, ent.enderecoid, ");
+        sql.append("SELECT pedido.*, usu.id as idUsuario, usu.nome as nomeUsuario, usu.login, usu.email, usu.senha, usu.tipousuarioid, ");
+        sql.append("ent.id as idEntidade, ent.nome as nomeEntidade, ent.cpf,ent.telefone, ");
         sql.append("tpu.id as idTipoUsuario, tpu.tipo ");
-        sql.append("FROM pedido, usuario usu, entidade ent, endereco,tipoUsuario tpu ");
+        sql.append("FROM pedido, usuario usu, entidade ent, tipoUsuario tpu ");
         sql.append("WHERE pedido.entidadeid = ent.id AND pedido.usuarioid = usu.id AND usu.tipousuarioId = tpu.id AND pedido.id = " + id  + ";");
 
         try (Connection conn = new ConectaDB().getConexao()) {
@@ -111,8 +111,8 @@ public class PedidoDAO {
         List<Pedido> pedidos = new ArrayList<>();
         StringBuilder sql = new StringBuilder();
 
-        sql.append("SELECT pedido.*, usu.id as idUsuario, usu.nome as nomeUsuario, usu.login, usu.email, usu.senha, usu.tiposuarioid ");
-        sql.append("ent.id as idEntidade, ent.nome as nomeEntidade, ent.cpf,ent.telefone, ent.enderecoid, ");
+        sql.append("SELECT pedido.*, usu.id as idUsuario, usu.nome as nomeUsuario, usu.login, usu.email, usu.senha, usu.tipousuarioid, ");
+        sql.append("ent.id as idEntidade, ent.nome as nomeEntidade, ent.cpf,ent.telefone, ");
         sql.append("tpu.id as idTipoUsuario, tpu.tipo ");
         sql.append("FROM pedido, usuario usu, entidade ent,tipoUsuario tpu ");
         sql.append("WHERE pedido.entidadeid = ent.id AND pedido.usuarioid = usu.id AND usu.tipousuarioId = tpu.id;");
