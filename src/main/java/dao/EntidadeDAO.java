@@ -1,9 +1,7 @@
 package dao;
 
 import dao.conexao.ConectaDB;
-import model.Endereco;
 import model.Entidade;
-import model.Usuario;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -11,16 +9,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class EntidadeDAO {
     public boolean inserir(Entidade entidade) {
         boolean salvou  = false;
         StringBuilder sql = new StringBuilder();
 
-        sql.append("INSERT INTO entidade (enderecoId, nome, cpf, telefone) ");
-        sql.append("VALUES ( " + entidade.getEndereco().getId() + ", ");
-        sql.append("         '" + entidade.getNome() + "', ");
+        sql.append("INSERT INTO entidade (nome, cpf, telefone) ");
+        sql.append("VALUES ( '" + entidade.getNome() + "', ");
         sql.append("         '" + entidade.getCpf() + "', ");
         sql.append("         '" + entidade.getTelefone()+ "'); ");
 
@@ -59,8 +55,7 @@ public class EntidadeDAO {
         StringBuilder sql = new StringBuilder();
 
         sql.append(" UPDATE entidade ");
-        sql.append(" SET  enderecoId = " + entidade.getEndereco().getId() + ", ");
-        sql.append("      nome ='" + entidade.getNome() + "', ");
+        sql.append(" SET  nome ='" + entidade.getNome() + "', ");
         sql.append("      cpf = '" + entidade.getCpf() + "', ");
         sql.append("      telefone = '" + entidade.getTelefone() + "' ");
         sql.append(" WHERE id = " + entidade.getId() + ";");
@@ -76,11 +71,11 @@ public class EntidadeDAO {
         return atualizado;
     }
 
-    public void salvar(Entidade entidade) {
+    public boolean salvar(Entidade entidade) {
         if(entidade.getId() == 0) {
-            this.inserir(entidade);
+            return this.inserir(entidade);
         } else {
-            this.atualizar(entidade);
+            return this.atualizar(entidade);
         }
     }
 
@@ -88,8 +83,8 @@ public class EntidadeDAO {
         StringBuilder sql = new StringBuilder();
         Entidade entidade = new Entidade();
 
-        sql.append("SELECT entidade.*, endereco.id as idEndereco, endereco.cep, endereco.logradouro, endereco.observacao FROM entidade, endereco ");
-        sql.append("WHERE entidade.enderecoid = endereco.id AND entidade.id = " + id  + ";");
+        sql.append("SELECT entidade.* FROM entidade ");
+        sql.append("WHERE entidade.id = " + id  + ";");
 
         try (Connection conn = new ConectaDB().getConexao()) {
             Statement stmt = conn.createStatement();
@@ -109,8 +104,7 @@ public class EntidadeDAO {
         List<Entidade> entidades = new ArrayList<>();
         StringBuilder sql = new StringBuilder();
 
-        sql.append("SELECT entidade.*, endereco.id as idEndereco, endereco.cep, endereco.logradouro, endereco.observacao FROM entidade, endereco ");
-        sql.append("WHERE entidade.enderecoid = endereco.id;");
+        sql.append("SELECT entidade.* FROM entidade ");
 
         try (Connection conn = new ConectaDB().getConexao()) {
 
@@ -136,12 +130,6 @@ public class EntidadeDAO {
             entidade.setCpf(rs.getString("cpf"));
             entidade.setTelefone(rs.getString("telefone"));
 
-            Endereco endereco = new Endereco();
-            endereco.setId(rs.getInt("enderecoid"));
-            endereco.setCep(rs.getString("cep"));
-            endereco.setLogradouro(rs.getString("logradouro"));
-            endereco.setObservacao(rs.getString("observacao"));
-            entidade.setEndereco(endereco);
         } catch (Exception e) {
             throw e;
         }

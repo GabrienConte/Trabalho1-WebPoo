@@ -5,7 +5,6 @@ public class Entidade {
     private String nome;
     private String cpf;
     private String telefone;
-    private Endereco endereco;
 
     public Entidade(String nome, String cpf) {
         this.nome = nome;
@@ -45,13 +44,5 @@ public class Entidade {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
-    }
-
-    public Endereco getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
     }
 }

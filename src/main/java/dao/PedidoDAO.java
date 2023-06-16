@@ -75,11 +75,11 @@ public class PedidoDAO {
         return atualizado;
     }
 
-    public void salvar(Pedido pedido) {
+    public boolean salvar(Pedido pedido) {
         if(pedido.getId() == 0) {
-            this.inserir(pedido);
+            return this.inserir(pedido);
         } else {
-            this.atualizar(pedido);
+            return this.atualizar(pedido);
         }
     }
 
@@ -89,10 +89,9 @@ public class PedidoDAO {
 
         sql.append("SELECT pedido.*, usu.id as idUsuario, usu.nome as nomeUsuario, usu.login, usu.email, usu.senha, usu.tiposuarioid ");
         sql.append("ent.id as idEntidade, ent.nome as nomeEntidade, ent.cpf,ent.telefone, ent.enderecoid, ");
-        sql.append("endereco.id as idEndereco, endereco.cep, endereco.logradouro, endereco.observacao");
         sql.append("tpu.id as idTipoUsuario, tpu.tipo ");
         sql.append("FROM pedido, usuario usu, entidade ent, endereco,tipoUsuario tpu ");
-        sql.append("WHERE pedido.entidadeid = ent.id AND entidade.enderecoid = endereco.id AND pedido.usuarioid = usu.id AND usu.tipousuarioId = tpu.id AND pedido.id = " + id  + ";");
+        sql.append("WHERE pedido.entidadeid = ent.id AND pedido.usuarioid = usu.id AND usu.tipousuarioId = tpu.id AND pedido.id = " + id  + ";");
 
         try (Connection conn = new ConectaDB().getConexao()) {
             Statement stmt = conn.createStatement();
@@ -114,10 +113,9 @@ public class PedidoDAO {
 
         sql.append("SELECT pedido.*, usu.id as idUsuario, usu.nome as nomeUsuario, usu.login, usu.email, usu.senha, usu.tiposuarioid ");
         sql.append("ent.id as idEntidade, ent.nome as nomeEntidade, ent.cpf,ent.telefone, ent.enderecoid, ");
-        sql.append("endereco.id as idEndereco, endereco.cep, endereco.logradouro, endereco.observacao");
         sql.append("tpu.id as idTipoUsuario, tpu.tipo ");
-        sql.append("FROM pedido, usuario usu, entidade ent, endereco,tipoUsuario tpu ");
-        sql.append("WHERE pedido.entidadeid = ent.id AND entidade.enderecoid = endereco.id AND pedido.usuarioid = usu.id AND usu.tipousuarioId = tpu.id;");
+        sql.append("FROM pedido, usuario usu, entidade ent,tipoUsuario tpu ");
+        sql.append("WHERE pedido.entidadeid = ent.id AND pedido.usuarioid = usu.id AND usu.tipousuarioId = tpu.id;");
 
         try (Connection conn = new ConectaDB().getConexao()) {
 
@@ -162,13 +160,6 @@ public class PedidoDAO {
             entidade.setNome(rs.getString("nomeEntidade"));
             entidade.setCpf(rs.getString("cpf"));
             entidade.setTelefone(rs.getString("telefone"));
-
-            Endereco endereco = new Endereco();
-            endereco.setId(rs.getInt("enderecoid"));
-            endereco.setCep(rs.getString("cep"));
-            endereco.setLogradouro(rs.getString("logradouro"));
-            endereco.setObservacao(rs.getString("observacao"));
-            entidade.setEndereco(endereco);
 
             pedido.setEntidade(entidade);
         } catch (Exception e) {

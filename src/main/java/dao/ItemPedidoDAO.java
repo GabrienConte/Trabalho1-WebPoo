@@ -73,11 +73,11 @@ public class ItemPedidoDAO {
         return atualizado;
     }
 
-    public void salvar(ItemPedido itemPedido) {
+    public boolean salvar(ItemPedido itemPedido) {
         if(itemPedido.getId() == 0) {
-            this.inserir(itemPedido);
+            return this.inserir(itemPedido);
         } else {
-            this.atualizar(itemPedido);
+            return this.atualizar(itemPedido);
         }
     }
 
@@ -90,11 +90,10 @@ public class ItemPedidoDAO {
         sql.append("    ped.id as idPedido, ped.usuarioid, ped.entidadeid, ped.dataentrega, ped.datadevolucao, ped.total ");
         sql.append("    usu.id as idUsuario, usu.nome as nomeUsuario, usu.login, usu.email, usu.senha, usu.tiposuarioid ");
         sql.append("    ent.id as idEntidade, ent.nome as nomeEntidade, ent.cpf,ent.telefone, ent.enderecoid, ");
-        sql.append("    endereco.id as idEndereco, endereco.cep, endereco.logradouro, endereco.observacao");
         sql.append("    tpu.id as idTipoUsuario, tpu.tipo ");
         sql.append("FROM itempedido, produto prod,pedido ped, usuario usu, entidade ent, endereco,tipoUsuario tpu ");
         sql.append("WHERE itempedido.produtoid = prod.id AND itempedido.pedidoid = ped.id ");
-        sql.append("    AND ped.entidadeid = ent.id AND ent.enderecoid = endereco.id AND ped.usuarioid = usu.id AND usu.tipousuarioId = tpu.id ");
+        sql.append("    AND ped.entidadeid = ent.id AND ped.usuarioid = usu.id AND usu.tipousuarioId = tpu.id ");
         sql.append("    AND itempedido.id = " + id + ";"  );
 
         try (Connection conn = new ConectaDB().getConexao()) {
@@ -120,11 +119,10 @@ public class ItemPedidoDAO {
         sql.append("    ped.id as idPedido, ped.usuarioid, ped.entidadeid, ped.dataentrega, ped.datadevolucao, ped.total ");
         sql.append("    usu.id as idUsuario, usu.nome as nomeUsuario, usu.login, usu.email, usu.senha, usu.tiposuarioid ");
         sql.append("    ent.id as idEntidade, ent.nome as nomeEntidade, ent.cpf,ent.telefone, ent.enderecoid, ");
-        sql.append("    endereco.id as idEndereco, endereco.cep, endereco.logradouro, endereco.observacao");
         sql.append("    tpu.id as idTipoUsuario, tpu.tipo ");
         sql.append("FROM itempedido, produto prod,pedido ped, usuario usu, entidade ent, endereco,tipoUsuario tpu ");
         sql.append("WHERE itempedido.produtoid = prod.id AND itempedido.pedidoid = ped.id ");
-        sql.append("    AND ped.entidadeid = ent.id AND ent.enderecoid = endereco.id AND ped.usuarioid = usu.id AND usu.tipousuarioId = tpu.id;");
+        sql.append("    AND ped.entidadeid = ent.id AND ped.usuarioid = usu.id AND usu.tipousuarioId = tpu.id;");
 
         try (Connection conn = new ConectaDB().getConexao()) {
 
@@ -172,13 +170,6 @@ public class ItemPedidoDAO {
             entidade.setNome(rs.getString("nomeEntidade"));
             entidade.setCpf(rs.getString("cpf"));
             entidade.setTelefone(rs.getString("telefone"));
-
-            Endereco endereco = new Endereco();
-            endereco.setId(rs.getInt("enderecoid"));
-            endereco.setCep(rs.getString("cep"));
-            endereco.setLogradouro(rs.getString("logradouro"));
-            endereco.setObservacao(rs.getString("observacao"));
-            entidade.setEndereco(endereco);
 
             pedido.setUsuario(usuario);
             pedido.setEntidade(entidade);

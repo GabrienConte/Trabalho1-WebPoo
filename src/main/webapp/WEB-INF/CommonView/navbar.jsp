@@ -10,22 +10,22 @@
 <nav class="navbar m-5">
     <div class="navbar-brand">
         <a class="navbar-item">
-            <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" alt="Bulma">
+            <img src="file:/images/cav-removebg-preview.png" width="112" height="28" alt="Bulma">
         </a>
     </div>
 
     <div id="navbarMenu" class="navbar-menu">
         <div class="navbar-start">
-            <a class="navbar-item" href="../inicio.jsp">
+            <a class="navbar-item" href="login">
                 Inicio
             </a>
-            <a class="navbar-item" href="../inicio.jsp">
+            <a class="navbar-item" href="pedidos?opcao=criar">
                 Novo Pedido
             </a>
-            <a class="navbar-item" href="../inicio.jsp">
+            <a class="navbar-item" href="pedidos?opcao=visualizar">
                 Pedidos
             </a>
-            <a class="navbar-item" href="../inicio.jsp">
+            <a class="navbar-item" href="entidades?opcao=visualizar">
                 Clientes
             </a>
             <a class="navbar-item" href="produtos?opcao=visualizar">
