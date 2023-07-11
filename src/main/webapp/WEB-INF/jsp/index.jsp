@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <%@ include file="WEB-INF/CommonView/header.jsp" %>
+    <%@ include file="CommonView/header.jsp" %>
     <title>Login</title>
 </head>
 <body>
