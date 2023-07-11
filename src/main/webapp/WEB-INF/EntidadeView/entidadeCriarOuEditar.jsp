@@ -28,7 +28,6 @@
                         <input type="hidden" id="opcao" name="opcao" value="salvar">
 
                         <input type="hidden" id="id" name="id" value="${id != null ? id : '0'}">
-                        <input type="hidden" id="enderecoId" name="enderecoId" value="${enderecoId != null ? id : '0'}">
 
                         <div class="field">
                             <label class="label">Nome</label>
@@ -40,14 +39,14 @@
                         <div class="field">
                             <label class="label">CPF</label>
                             <div class="control">
-                                <input name="cpf" id="cpf" class="input" type="text" placeholder="999.999.999-99" value="${cpf != null ? cpf : ''}" required>
+                                <input name="cpf" id="cpf" class="input" type="text" placeholder="999.999.999-99" maxlength="14" value="${cpf != null ? cpf : ''}" required>
                             </div>
                         </div>
 
                         <div class="field">
                             <label class="label">Telefone</label>
                             <div class="control">
-                                <input name="telefone" id="telefone" class="input" type="text" placeholder="(55)99999-9999" value="${telefone != null ? telefone : ''}" required>
+                                <input name="telefone" id="telefone" class="input" type="text" data-js="telefone" placeholder="(55)99999-9999" maxlength="14" value="${telefone != null ? telefone : ''}" required>
                             </div>
                         </div>
 
@@ -72,3 +71,19 @@
 <%@ include file="../CommonView/footer.jsp" %>
 </body>
 </html>
+<script type="application/javascript">
+    const $input = document.querySelector('[data-js="telefone"]')
+    $input.addEventListener('input', handleInput, false)
+
+    function handleInput (e) {
+        e.target.value = phoneMask(e.target.value)
+    }
+
+    function phoneMask (phone) {
+        return phone.replace(/\D/g, '')
+            .replace(/^(\d)/, '($1')
+            .replace(/^(\(\d{2})(\d)/, '$1)$2')
+            .replace(/(\d{4})(\d{1,5})/, '$1-$2')
+            .replace(/(-\d{5})\d+?$/, '$1');
+    }
+</script>
